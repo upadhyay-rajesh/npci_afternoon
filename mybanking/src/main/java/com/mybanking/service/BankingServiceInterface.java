@@ -10,4 +10,8 @@ public interface BankingServiceInterface {
 
 	List<Employee> getAllService();
 
+	Employee editProfileService(Employee emp);
+
+	String deleteProfileService(String empid);
+
 }

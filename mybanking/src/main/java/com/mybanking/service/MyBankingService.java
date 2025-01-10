@@ -28,4 +28,17 @@ public class MyBankingService implements BankingServiceInterface{
 		return mDao.findAll();
 	}
 
+	@Override
+	public Employee editProfileService(Employee emp) {
+		
+		mDao.saveAndFlush(emp);
+		return emp;
+	}
+
+	@Override
+	public String deleteProfileService(String empid) {
+		mDao.deleteById(empid);
+		return "record deleted";
+	}
+
 }
