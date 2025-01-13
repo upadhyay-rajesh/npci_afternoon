@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mybanking.entity.Employee;
 import com.mybanking.service.BankingServiceInterface;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @RestController
 @RequestMapping("/api/v1/employees")
 public class MyBankingController {
@@ -24,6 +29,20 @@ public class MyBankingController {
 	@Autowired
 	private BankingServiceInterface bService;
 
+	
+	@Operation(
+	        summary = "Get all employees",
+	        description = "Retrieve a list of all available employees",
+	        responses = {
+	            @ApiResponse(
+	                responseCode = "200",
+	                description = "List of employees",
+	                content = @Content(mediaType = "application/json", 
+	                                   schema = @Schema(implementation = Employee.class))
+	            )
+	        }
+	    )
+	
 	@GetMapping
 	public List<Employee> getAll(){
 		return bService.getAllService();
